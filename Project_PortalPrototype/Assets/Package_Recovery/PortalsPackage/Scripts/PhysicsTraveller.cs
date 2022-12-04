@@ -7,6 +7,7 @@ using UnityEngine;
 public class PhysicsTraveller : PortalTraveller
 {
     public Rigidbody Rb { get; private set; }
+    public Transform VelocityT;
 
     public Vector3 eulerAngle;
 
@@ -16,7 +17,11 @@ public class PhysicsTraveller : PortalTraveller
     void Awake()
     {
         Rb = GetComponent<Rigidbody>();
+        //VelocityT = Instantiate(new GameObject(), transform).transform;
+        //VelocityT.name = "EnterVelocity";
     }
+
+
 
     public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
     {
@@ -29,9 +34,8 @@ public class PhysicsTraveller : PortalTraveller
         Vector3 angularDirection = Rb.angularVelocity.normalized;
 
         // Position new Transform in velocity direction of Physics Traveller
-        Transform enterVelocity = Instantiate(new GameObject(), transform).transform;
         Vector3 localVelocity = Vector3.zero + velocityDirection;
-        enterVelocity.LookAt(transform.position + localVelocity);
+        VelocityT.LookAt(transform.position + localVelocity);
 
         Rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         Rb.isKinematic = true;
@@ -44,10 +48,9 @@ public class PhysicsTraveller : PortalTraveller
 
         Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
-        Rb.velocity = enterVelocity.forward * speed;
+        Rb.velocity = VelocityT.forward * speed;
         Rb.angularVelocity = angularDirection * angularSpeed;
 
-        Destroy(enterVelocity.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
