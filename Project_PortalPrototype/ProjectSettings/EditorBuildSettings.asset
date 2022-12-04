@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PortalHub.unity
+    guid: 186a240a86cbda34cab3489d7a7f8c72
+  - enabled: 1
+    path: Assets/Scenes/PortalWalk.unity
+    guid: 49dc98e32d3f07141bd7bf4ba5019462
+  - enabled: 1
+    path: Assets/Scenes/PortalPhysics.unity
+    guid: bb1ebe6b46d75fb499a1cd73a5d3b874
+  m_configObjects: {}
